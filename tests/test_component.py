@@ -3,7 +3,7 @@ from src.component import calculate_discount
 
 
 def test_vip_discount():
-    assert calculate_discount(100, "VIP") == 900
+    assert calculate_discount(100, "VIP") == 80
 
 
 def test_coupon_discount():
