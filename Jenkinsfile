@@ -3,17 +3,21 @@ pipeline {
 
     stages {
 
+        stage('Install Python and pip') {
+            steps {
+                sh 'apt-get update && apt-get install -y python3 python3-pip python3-venv'
+            }
+        }
+
         stage('Install Dependencies') {
             steps {
-                echo 'Installing project dependencies...'
-                sh 'pip install -r requirements.txt'
+                sh 'python3 -m pip install -r requirements.txt --break-system-packages'
             }
         }
 
         stage('Run Tests') {
             steps {
-                echo 'Running pytest automated tests...'
-                sh 'PYTHONPATH=. pytest'
+                sh 'PYTHONPATH=. python3 -m pytest'
             }
         }
 
